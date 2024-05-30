@@ -38,6 +38,8 @@ pip install tqdm
 
 pip install hyperpyyaml
 
+cd PCF-NAT
+
 sudo unzip ./na1d_tensorcore/ninja-linux.zip -d /usr/local/bin/
 
 sudo update-alternatives --install /usr/bin/ninja ninja /usr/local/bin/ninja 1 --force
@@ -48,7 +50,7 @@ Although PyTorch comes with built-in support for CUDA and cuDNN, you still need 
 
 ## 2. train steps:
 
-a. Modify the yaml files in the folder './configs/'
+a. Modify the yaml files in the folder ./configs/
 
     save_folder
     
@@ -56,11 +58,11 @@ a. Modify the yaml files in the folder './configs/'
     
     our file directory structure:
     
-        '/mnt/data_ext4/voxceleb/voxceleb2/wav/id00012/_raOc3-IRsw/00110.wav'
+        /mnt/data_ext4/voxceleb/voxceleb2/wav/id00012/_raOc3-IRsw/00110.wav
         
-        '/mnt/data_ext4/musan/music/fma/music-fma-0000.wav'
+        /mnt/data_ext4/musan/music/fma/music-fma-0000.wav
         
-        '/mnt/data_ext4/RIRS_NOISES/simulated_rirs/largeroom/Room001/Room001-00001.wav'
+        /mnt/data_ext4/RIRS_NOISES/simulated_rirs/largeroom/Room001/Room001-00001.wav
 
 b. Execute command: 
 ```
