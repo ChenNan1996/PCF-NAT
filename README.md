@@ -78,7 +78,7 @@ Training PCF-NAT (6x4) takes approximately 33 hours with single NVIDIA 4090.
 
 ## 3. evaluate steps:
 
-a. Modify './public/EvaluateCall_pair.py'
+a. Modify ./public/EvaluateCall_pair.py
 
 file path such as 'veri_test2.txt'
 
