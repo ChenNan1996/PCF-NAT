@@ -185,15 +185,17 @@ class Eval(object):
         labels = np.zeros(len(veri_lines), dtype=int)
         scores = torch.empty(len(veri_lines), dtype=dtype, device=device)
         #similarity = torch.nn.CosineSimilarity(dim=-1, eps=1e-6)
-        for i in range(len(veri_lines)):
-            label, file1, file2 = veri_lines[i].rstrip().split(' ')
-            labels[i] = label
-            index1 = file_dict[file1]
-            index2 = file_dict[file2]
-            emb1 = veri_emb[index1]
-            emb2 = veri_emb[index2]
-            #scores[i] = similarity(emb1, emb2)
-            scores[i] = emb1@emb2
+        #for i in range(len(veri_lines)):
+        with tqdm(np.arange(len(veri_lines)), initial=0, total=len(veri_lines), dynamic_ncols=True, desc='test: cal_scores_'+suffix) as t:
+            for i in t:
+                label, file1, file2 = veri_lines[i].rstrip().split(' ')
+                labels[i] = label
+                index1 = file_dict[file1]
+                index2 = file_dict[file2]
+                emb1 = veri_emb[index1]
+                emb2 = veri_emb[index2]
+                #scores[i] = similarity(emb1, emb2)
+                scores[i] = emb1@emb2
         
         scores0 = scores.type(torch.float32).cpu().numpy() # before asnorm
 
