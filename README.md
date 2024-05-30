@@ -52,38 +52,38 @@ Although PyTorch comes with built-in support for CUDA and cuDNN, you still need 
 
 a. Modify the yaml files in the folder ./configs/
 
-    save_folder
+save_folder
+
+train_data_foler, musan_folder, simulated_rirs_folder
+
+our file directory structure:
+
+    /mnt/data_ext4/voxceleb/voxceleb2/wav/id00012/_raOc3-IRsw/00110.wav
     
-    train_data_foler, musan_folder, simulated_rirs_folder
+    /mnt/data_ext4/musan/music/fma/music-fma-0000.wav
     
-    our file directory structure:
-    
-        /mnt/data_ext4/voxceleb/voxceleb2/wav/id00012/_raOc3-IRsw/00110.wav
-        
-        /mnt/data_ext4/musan/music/fma/music-fma-0000.wav
-        
-        /mnt/data_ext4/RIRS_NOISES/simulated_rirs/largeroom/Room001/Room001-00001.wav
+    /mnt/data_ext4/RIRS_NOISES/simulated_rirs/largeroom/Room001/Room001-00001.wav
 
 b. Execute command: 
 ```
 python train_main.py --hparams_file=./configs/xx.yaml --epoch=0
 ```
-    Training MFA-NAT (4x4) takes approximately 17 hours with single NVIDIA 4090.
-    
-    Training PCF-NAT (4x4) takes approximately 23 hours with single NVIDIA 4090.
-    
-    Training PCF-NAT (6x4) takes approximately 33 hours with single NVIDIA 4090.
+Training MFA-NAT (4x4) takes approximately 17 hours with single NVIDIA 4090.
+
+Training PCF-NAT (4x4) takes approximately 23 hours with single NVIDIA 4090.
+
+Training PCF-NAT (6x4) takes approximately 33 hours with single NVIDIA 4090.
 
 
 ## 3. evaluate steps:
 
 a. Modify './public/EvaluateCall_pair.py'
 
-    file path such as 'veri_test2.txt'
-    
-    the folder of voxceleb1
-    
-        our file directory structure: '/mnt/data_ext4/voxceleb/voxceleb1/wav/id10001/1zcIwhmdeo4/00001.wav'
+file path such as 'veri_test2.txt'
+
+the folder of voxceleb1
+
+our file directory structure: /mnt/data_ext4/voxceleb/voxceleb1/wav/id10001/1zcIwhmdeo4/00001.wav
 
 b. Execute command: 
 ```
