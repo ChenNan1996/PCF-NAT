@@ -9,7 +9,7 @@ import torch
 from public.Evaluate_pair import Eval
 
 class EvaluateCall(object):
-    def __init__(self, compute_features, emb_size, dtype=torch.float32, device='cpu', refresh=False, datasets=[0,1,2]):
+    def __init__(self, compute_features, emb_size, dtype=torch.float32, device='cpu', refresh=False, datasets=['vox1_test2']):
         super().__init__()
 
         rfd = '/mnt/data_ext4/' # root folder
@@ -70,31 +70,21 @@ class EvaluateCall(object):
             file.close()
         '''
         
+        configs = {
+            'vox1_test2': [veri_wav_fd_vox1_test, veri_pairs_fp_vox1_test2],
+            'vox1_test_E2': [vox1_wav_folder, veri_pairs_fp_vox1_test_E2],
+            'vox1_test_H2': [vox1_wav_folder, veri_pairs_fp_vox1_test_H2],
+            #'voxsrc2020_val': ['', veri_pairs_fp_voxsrc2020_val_fullpath],
+            #'voxsrc2021_val': [veri_wav_fd_voxsrc2021_val, veri_pairs_fp_voxsrc2021_val],
+            #'voxsrc2022_val': ['', veri_pairs_fp_voxsrc2022_val_fullpath],
+            #'voxsrc2023_val': [veri_wav_fd_voxsrc2023_val, veri_pairs_fp_voxsrc2023_val],
+        }
         evals = []
         for i in range(len(datasets)):
-            index = datasets[i]
-            if index==0:
-                evals.append(Eval(compute_features=compute_features, emb_size=emb_size, veri_wav_fd=veri_wav_fd_vox1_test, veri_pairs_fp=veri_pairs_fp_vox1_test2, suffix='vox1_test2', dtype=dtype, device=device, refresh=refresh))
-            elif index==1:
-                evals.append(Eval(compute_features=compute_features, emb_size=emb_size, veri_wav_fd=vox1_wav_folder, veri_pairs_fp=veri_pairs_fp_vox1_test_E2, suffix='vox1_test_E2', dtype=dtype, device=device, refresh=refresh))
-            elif index==2:
-                evals.append(Eval(compute_features=compute_features, emb_size=emb_size, veri_wav_fd=vox1_wav_folder, veri_pairs_fp=veri_pairs_fp_vox1_test_H2, suffix='vox1_test_H2', dtype=dtype, device=device, refresh=refresh))
-            elif index==3:
-                evals.append(Eval(compute_features=compute_features, emb_size=emb_size, veri_wav_fd='', veri_pairs_fp=veri_pairs_fp_voxsrc2020_val_fullpath, suffix='voxsrc2020_val', dtype=dtype, device=device, refresh=refresh))
-            elif index==4:
-                evals.append(Eval(compute_features=compute_features, emb_size=emb_size, veri_wav_fd=veri_wav_fd_voxsrc2021_val, veri_pairs_fp=veri_pairs_fp_voxsrc2021_val, suffix='voxsrc2021_val', dtype=dtype, device=device, refresh=refresh))
-            elif index==5:
-                evals.append(Eval(compute_features=compute_features, emb_size=emb_size, veri_wav_fd='', veri_pairs_fp=veri_pairs_fp_voxsrc2022_val_fullpath, suffix='voxsrc2022_val', dtype=dtype, device=device, refresh=refresh))
-            elif index==6:
-                evals.append(Eval(compute_features=compute_features, emb_size=emb_size, veri_wav_fd=veri_wav_fd_voxsrc2023_val, veri_pairs_fp=veri_pairs_fp_voxsrc2023_val, suffix='voxsrc2023_val', dtype=dtype, device=device, refresh=refresh))
-            '''
-            elif index==7:
-                evals.append(Eval(compute_features=compute_features, emb_size=emb_size, veri_wav_fd=veri_wav_fd_vox1_test, veri_pairs_fp=veri_pairs_fp_vox1_test, suffix='vox1_test', dtype=dtype, device=device, refresh=refresh))
-            elif index==8:
-                evals.append(Eval(compute_features=compute_features, emb_size=emb_size, veri_wav_fd=vox1_wav_folder, veri_pairs_fp=veri_pairs_fp_vox1_test_E, suffix='vox1_test_E', dtype=dtype, device=device, refresh=refresh))
-            elif index==9:
-                evals.append(Eval(compute_features=compute_features, emb_size=emb_size, veri_wav_fd=vox1_wav_folder, veri_pairs_fp=veri_pairs_fp_vox1_test_H, suffix='vox1_test_H', dtype=dtype, device=device, refresh=refresh))
-            '''
+            name = datasets[i]
+            veri_wav_fd = configs[name][0]
+            veri_pairs_fp = configs[name][1]
+            evals.append(Eval(compute_features=compute_features, emb_size=emb_size, veri_wav_fd=veri_wav_fd, veri_pairs_fp=veri_pairs_fp, suffix=name, dtype=dtype, device=device, refresh=refresh))
         self.evals = evals
         
     def test(self, embedding_model, epoch_folder, feat_slice=-1, cohort=300, *args, **kwargs):
