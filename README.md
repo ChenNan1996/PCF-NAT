@@ -1,15 +1,16 @@
 # PCF-NAT
 This repo is the implementation of ["Neighborhood Attention Transformer with Progressive Channel Fusion for Speaker Verification"](https://arxiv.org/abs/2405.12031).
 
+## support
 Currently, only NVIDIA GPUs with compute capability >= 8.0 are supported.
 
 It is recommended to have at least 24GB of GPU VRAM. If the VRAM is insufficient, you can set the embedding model to use checkpoints in the YAML file used for training.
 
 The supported data formats are: torch.bfloat16 and torch.float16.
 
+
+## reproduction
 Voxceleb2, m4a -> wav: ffmpeg -y -i xx.m4a -ac 1 -vn -acodec pcm_s16le -ar 16000 xx.wav
-
-
 
 We trained the models with single NVIDIA 4090 and evaluated with single NVIDIA 3090.
 
