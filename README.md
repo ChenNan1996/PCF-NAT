@@ -25,7 +25,7 @@ CUDA: 11.8
 CUDNN: 8700
 
 
-## 1. create environment：
+## 1. create environment
 ```
 conda create -n tc201 python=3.10
 
@@ -49,7 +49,7 @@ sudo update-alternatives --install /usr/bin/ninja ninja /usr/local/bin/ninja 1 -
 Although PyTorch comes with built-in support for CUDA and cuDNN, you still need to install CUDA 11.8 separately and ensure that the NVCC command is available to compile and execute custom CUDA operators for neighborhood attention.
 
 
-## 2. train steps:
+## 2. train steps
 
 a. Modify the yaml files in the folder ./configs/
 
@@ -76,7 +76,7 @@ Training PCF-NAT (4x4) takes approximately 23 hours with single NVIDIA 4090.
 Training PCF-NAT (6x4) takes approximately 33 hours with single NVIDIA 4090.
 
 
-## 3. evaluate steps:
+## 3. evaluate steps
 
 a. Modify ./public/EvaluateCall_pair.py
 
@@ -89,4 +89,16 @@ our file directory structure: /mnt/data_ext4/voxceleb/voxceleb1/wav/id10001/1zcI
 b. Execute command: 
 ```
 python evaluate_main.py --save_folder='./results/xx/' --epoch=10 --asnorm=True
+```
+
+## citation
+```
+@misc{li2024neighborhood,
+      title={Neighborhood Attention Transformer with Progressive Channel Fusion for Speaker Verification}, 
+      author={Nian Li and Jianguo Wei},
+      year={2024},
+      eprint={2405.12031},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD}
+}
 ```
