@@ -157,7 +157,7 @@ if __name__ == '__main__':
     epoch = args.epoch
     asnorm = args.asnorm
     asnorm = True if asnorm=='True' or asnorm=='true' else False
-    print(save_folder)
+    print(f'save_folder={save_folder}')
     print(f'asnorm={asnorm}')
 
     hparams_file = save_folder + 'hparams.yaml'
@@ -193,9 +193,9 @@ if __name__ == '__main__':
     
     feat_slice = 400 # 0
     
-    datasets = [0,1,2]
+    datasets = ['vox1_test2', 'vox1_test_E2', 'vox1_test_H2']
     cohort = [300,300,100]
-    #datasets = [0,1,2,3,4,5,6]
+    #datasets = ['vox1_test2', 'vox1_test_E2', 'vox1_test_H2', 'voxsrc2020_val', 'voxsrc2021_val', 'voxsrc2022_val', 'voxsrc2023_val']
     #cohort = [300,300,100,100,100,300,300]
     
     prefix = 'eval/'
