@@ -25,7 +25,7 @@ CUDNN: 8700
 
 
 ## 1. create environment：
-'''
+```
 conda create -n tc201 python=3.10
 
 conda activate tc201
@@ -41,7 +41,7 @@ pip install hyperpyyaml
 sudo unzip ./na1d_tensorcore/ninja-linux.zip -d /usr/local/bin/
 
 sudo update-alternatives --install /usr/bin/ninja ninja /usr/local/bin/ninja 1 --force
-'''
+```
 
 Although PyTorch comes with built-in support for CUDA and cuDNN, you still need to install CUDA 11.8 separately and ensure that the NVCC command is available to compile and execute custom CUDA operators for neighborhood attention.
 
@@ -63,9 +63,9 @@ a. Modify the yaml files in the folder './configs/'
         '/mnt/data_ext4/RIRS_NOISES/simulated_rirs/largeroom/Room001/Room001-00001.wav'
 
 b. Execute command: 
-'''
+```
 python train_main.py --hparams_file=./configs/xx.yaml --epoch=0
-'''
+```
     Training MFA-NAT (4x4) takes approximately 17 hours with single NVIDIA 4090.
     
     Training PCF-NAT (4x4) takes approximately 23 hours with single NVIDIA 4090.
@@ -84,6 +84,6 @@ a. Modify './public/EvaluateCall_pair.py'
         our file directory structure: '/mnt/data_ext4/voxceleb/voxceleb1/wav/id10001/1zcIwhmdeo4/00001.wav'
 
 b. Execute command: 
-'''
+```
 python evaluate_main.py --save_folder='./results/xx/' --epoch=10 --asnorm=True
-'''
+```
