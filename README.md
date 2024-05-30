@@ -58,11 +58,11 @@ train_data_foler, musan_folder, simulated_rirs_folder
 
 our file directory structure:
 
-    /mnt/data_ext4/voxceleb/voxceleb2/wav/id00012/_raOc3-IRsw/00110.wav
-    
-    /mnt/data_ext4/musan/music/fma/music-fma-0000.wav
-    
-    /mnt/data_ext4/RIRS_NOISES/simulated_rirs/largeroom/Room001/Room001-00001.wav
+/mnt/data_ext4/voxceleb/voxceleb2/wav/id00012/_raOc3-IRsw/00110.wav
+
+/mnt/data_ext4/musan/music/fma/music-fma-0000.wav
+
+/mnt/data_ext4/RIRS_NOISES/simulated_rirs/largeroom/Room001/Room001-00001.wav
 
 b. Execute command: 
 ```
