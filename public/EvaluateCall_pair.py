@@ -28,6 +28,7 @@ class EvaluateCall(object):
         
         '''
             #http://mm.kaist.ac.kr/datasets/voxceleb/voxsrc/competition2023.html
+            #some of the utterances from VoxCeleb1, VoxMovies and VoxConverse dataset in validation set.
         veri_wav_fd_voxsrc2023_val = rfd + 'voxsrc/voxsrc2023/VoxSRC2023_val/'
         veri_pairs_fp_voxsrc2023_val = rfd + 'voxsrc/voxsrc2023/VoxSRC2023_Track12_val.txt'
         
