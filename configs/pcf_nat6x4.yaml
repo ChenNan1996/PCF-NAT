@@ -1,8 +1,8 @@
 # save_folder: './results/pcfNAT_bf16_ps=2[6x4]_heads=[16,4]_dim=256_winsize=[[wx5,0][wx6][wx5,0][wx6]]_groups=[8,4,2,1]_droppath=0.13_mfa=T_proj=1536_aam_m=0.2_s=32_sub=3_wd=1e-5_nowdkey_bs=256_augxn=2_sgd_warmcoslr_1e-4_0.5_1_9_seeds=2024/'
 save_folder: './results/pcf_nat6x4/'
 
-
 train_data_foler: '/mnt/data_ext4/voxceleb/voxceleb2/'
+train_data_sub_fd: 'wav/'
 musan_folder: '/mnt/data_ext4/musan/'
 simulated_rirs_folder: '/mnt/data_ext4/RIRS_NOISES/simulated_rirs/'
 
