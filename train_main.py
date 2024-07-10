@@ -64,7 +64,9 @@ def train():
                 if n>1:
                     labels = labels.unsqueeze(1).expand(labels.shape[0], x.shape[1]).flatten()
                     x = x.view(x.shape[0]*x.shape[1], -1)
+                #print(f'x.shape={x.shape}')
                 x = compute_features(x)
+                #print(f'x.shape={x.shape}')
             with autocast(dtype=train_dtype):
                 x = x - torch.mean(x, dim=-1, keepdim=True)
                 x = embedding_model(x)
@@ -85,7 +87,7 @@ def train():
             t.set_postfix(aloss=avg_loss, closs=loss, clr=clr, acc1=acc1*100)
             lines.append([step, clr, loss, avg_loss, acc1])
             
-            #if step==100:
+            #if step==200:
                 #print([step, clr, loss, avg_loss, acc1])
                 #assert False
             
@@ -172,11 +174,12 @@ if __name__ == '__main__':
     train_list_fp = None if train_list_fn is None else train_data_foler + train_list_fn
     spk_ids_fp = None if spk_ids_fn is None else train_data_foler+spk_ids_fn
     wav_level = 3 if wav_level is None else wav_level
+    resample = resample if resample is not None else []
     
     aug = Aug(musan_folder=musan_folder, simulated_rirs_folder=simulated_rirs_folder)
     train_list, spkers_num_ = get_train_list(train_data_foler=train_data_foler, sub_fd=train_data_sub_fd, wav_level=wav_level, drop_spkids_fp=drop_spkids_fp, spk_ids_fp=spk_ids_fp, train_list_fp=train_list_fp, part_dots=train_part_dots if divide else 0, resample=resample)
     assert spkers_num == spkers_num_*(len(resample)+1), 'The given spkers_num does not match the actual number of speakers'
-    train_dataset = AugNDataset(train_list, part_dots=train_part_dots, n=n, aug=aug, aug_prob=aug_prob if n==1 else 0., shift=resample is not None, divide=divide, random_chunk=random_chunk)
+    train_dataset = AugNDataset(train_list, part_dots=train_part_dots, n=n, aug=aug, aug_prob=aug_prob if n==1 else 0., shift=len(resample)>0, divide=divide, random_chunk=random_chunk)
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, num_workers=num_workers, pin_memory=True, shuffle=True, drop_last=True)#, persistent_workers=True
 
     if allow_no_weight_decay:
@@ -217,4 +220,3 @@ if __name__ == '__main__':
             #validate()
         print()
     print('done')
-
