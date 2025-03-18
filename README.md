@@ -1,5 +1,6 @@
 # PCF-NAT
 This repo is the implementation of ["Neighborhood Attention Transformer with Progressive Channel Fusion for Speaker Verification"](https://arxiv.org/abs/2405.12031).
+The paper has been accepted by ICASSP 2025. https://ieeexplore.ieee.org/document/10887572
 
 ## support
 Currently, only NVIDIA GPUs with compute capability >= 8.0 are supported.
