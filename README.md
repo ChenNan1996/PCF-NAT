@@ -94,12 +94,14 @@ python evaluate_main.py --save_folder='./results/xx/' --epoch=10 --asnorm=True
 
 ## citation
 ```
-@misc{li2024neighborhood,
-      title={Neighborhood Attention Transformer with Progressive Channel Fusion for Speaker Verification}, 
-      author={Nian Li and Jianguo Wei},
-      year={2024},
-      eprint={2405.12031},
-      archivePrefix={arXiv},
-      primaryClass={cs.SD}
-}
+@INPROCEEDINGS{10887572,
+  author={Li, Nian and Wei, Jianguo},
+  booktitle={ICASSP 2025 - 2025 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 
+  title={Neighborhood Attention Transformer with Progressive Channel Fusion for Speaker Verification}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-5},
+  keywords={Accuracy;Convolution;Scalability;Aggregates;Training data;Transformers;Feature extraction;Acoustics;Speech synthesis;speaker verification;transformer;neighborhood attention},
+  doi={10.1109/ICASSP49660.2025.10887572}}
 ```
