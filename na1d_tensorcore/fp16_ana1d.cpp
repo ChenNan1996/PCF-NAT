@@ -90,8 +90,8 @@ void torch_ana_a_backward(torch::Tensor &attn_gd,
 }
 
 void torch_ana_v_backward(torch::Tensor &value_gd,
-                       const torch::Tensor &result_gd,
                        const torch::Tensor &attn,
+                       const torch::Tensor &result_gd,
                        const int64_t N,
                        const int64_t T,
                        const int64_t C,
