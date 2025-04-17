@@ -74,7 +74,7 @@ class bf16_ANA1d_AV_Function(torch.autograd.Function):
         attn_gd = torch.empty(attn.shape, dtype=attn.dtype, device=result_gd.device)
         bf16_cuda_module.torch_ana_a_backward(attn_gd, result_gd, v,  N, T, C, ctx.win_size, ctx.left)
         v_gd = torch.empty(v.shape, dtype=v.dtype, device=result_gd.device)
-        bf16_cuda_module.torch_ana_v_backward(v_gd, result_gd, attn,  N, T, C, ctx.win_size, ctx.left)
+        bf16_cuda_module.torch_ana_v_backward(v_gd, attn, result_gd, N, T, C, ctx.win_size, ctx.left)
         return (attn_gd, v_gd, None, None, None)
 
 class fp16_ANA1d_QK_Function(torch.autograd.Function):
@@ -122,7 +122,7 @@ class fp16_ANA1d_AV_Function(torch.autograd.Function):
         attn_gd = torch.empty(attn.shape, dtype=attn.dtype, device=result_gd.device)
         fp16_cuda_module.torch_ana_a_backward(attn_gd, result_gd, v,  N, T, C, ctx.win_size, ctx.left)
         v_gd = torch.empty(v.shape, dtype=v.dtype, device=result_gd.device)
-        fp16_cuda_module.torch_ana_v_backward(v_gd, result_gd, attn,  N, T, C, ctx.win_size, ctx.left)
+        fp16_cuda_module.torch_ana_v_backward(v_gd, attn, result_gd, N, T, C, ctx.win_size, ctx.left)
         return (attn_gd, v_gd, None, None, None)
 
 def getNA1dFunction(C, dilation, dtype):
