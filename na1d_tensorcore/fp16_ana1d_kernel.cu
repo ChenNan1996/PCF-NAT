@@ -119,10 +119,10 @@ __global__ void ana_qk_forward_kernel_C16(float *__restrict__ attn,
         //#pragma unroll
         for(int i=0; i<ceil((float)win_size/WMMA_N)+2; i++){
             uint32_t RAcc[4] = {0, 0, 0, 0};
-            if(threadIdx.x<16){
-                uint32_t B_shmem_lane_addr = __cvta_generic_to_shared(&shares8[threadIdx.y*WMMA_M+i*WMMA_N + threadIdx.x%8 + threadIdx.x/8*len]);
-                LDMATRIX_X2(RB[0], RB[1], B_shmem_lane_addr);
-            }
+            //if(threadIdx.x<16){
+            uint32_t B_shmem_lane_addr = __cvta_generic_to_shared(&shares8[threadIdx.y*WMMA_M+i*WMMA_N + threadIdx.x%8 + threadIdx.x/8*len]);
+            LDMATRIX_X2(RB[0], RB[1], B_shmem_lane_addr);
+            //}
             HMMA16816(RAcc[0], RAcc[1], RAcc[2], RAcc[3], RA[0], RA[1], RA[2], RA[3], RB[0], RB[1], RAcc[0], RAcc[1], RAcc[2], RAcc[3]);
             __syncthreads();
             
@@ -237,10 +237,10 @@ __global__ void ana_qk_forward_kernel_C8(float *__restrict__ attn,
         //#pragma unroll
         for(int i=0; i<ceil((float)win_size/WMMA_N)+2; i++){
             uint32_t RAcc[4] = {0, 0, 0, 0};
-            if(threadIdx.x<8){
-                uint32_t B_shmem_lane_addr = __cvta_generic_to_shared(&shares8[threadIdx.y*WMMA_M+i*WMMA_N + threadIdx.x]);
-                LDMATRIX_X1(RB[0], B_shmem_lane_addr);
-            }
+            //if(threadIdx.x<8){
+            uint32_t B_shmem_lane_addr = __cvta_generic_to_shared(&shares8[threadIdx.y*WMMA_M+i*WMMA_N + threadIdx.x]);
+            LDMATRIX_X1(RB[0], B_shmem_lane_addr);
+            //}
             HMMA1688(RAcc[0], RAcc[1], RAcc[2], RAcc[3], RA[0], RA[1], RB[0], RAcc[0], RAcc[1], RAcc[2], RAcc[3]);
             __syncthreads();
             
