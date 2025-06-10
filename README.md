@@ -2,6 +2,9 @@
 This repo is the implementation of ["Neighborhood Attention Transformer with Progressive Channel Fusion for Speaker Verification"](https://ieeexplore.ieee.org/document/10887572).
 The paper has been accepted by ICASSP 2025.
 
+##update
+2025.06: pcf_nat_pytorch2.7.zip: NA operator supports pytorch2.0~2.7.0
+
 ## support
 Currently, only NVIDIA GPUs with compute capability >= 8.0 are supported.
 
